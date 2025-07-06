@@ -1,12 +1,10 @@
-import { useState } from 'react';
-import axios from 'axios';
 
+import axios from 'axios';
+import useStore from './store';
 
 
 function App() {
-  const [formData, setFormData] = useState({ name: '', location: '' });
-  const [businessData, setBusinessData] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const { formData, businessData, loading, setFormData, setBusinessData, setLoading } = useStore();
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
