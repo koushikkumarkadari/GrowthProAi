@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+
+
 function App() {
   const [formData, setFormData] = useState({ name: '', location: '' });
   const [businessData, setBusinessData] = useState(null);
@@ -18,7 +20,7 @@ function App() {
     }
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/business-data', formData);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_VARIABLE}/business-data`, formData);
       setBusinessData(response.data);
     } catch (error) {
       console.error('Error fetching business data:', error);
@@ -29,7 +31,7 @@ function App() {
   const handleRegenerateHeadline = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/regenerate-headline', {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_VARIABLE}/regenerate-headline`, {
         params: formData,
       });
       setBusinessData({ ...businessData, headline: response.data.headline });
